@@ -13,19 +13,14 @@ class Solution {
         num++;
        }
        right--;
-       if(top<=bottom){
        for(int i=right;i>=left;i--){
         arr[bottom][i]=num;
         num++;
        }
-       }
        bottom--;
-       if(left<=right){
        for(int i=bottom;i>=top;i--){
         arr[i][left]=num;
         num++;
-       }
-
        }
        left++;
        }
