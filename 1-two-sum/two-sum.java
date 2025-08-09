@@ -12,7 +12,7 @@ class Solution {
                 map.put(nums[i],i);
             }
         }
-            throw new IllegalArgumentException("No solution");
+            return new int[0];
         }
         
         
