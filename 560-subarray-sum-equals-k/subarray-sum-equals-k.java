@@ -5,18 +5,25 @@ class Solution {
         int count = 0;
         int sum = 0;
         HashMap<Integer, Integer> prefixSumCount = new HashMap<>();
-        prefixSumCount.put(0, 1); // Base case: prefix sum 0 has one count
 
-        for (int num : nums) {
-            sum += num;
+        // Initialize the map with sum 0 having one count
+        prefixSumCount.put(0, 1);
 
-            // If there exists a prefix sum that when removed gives sum = k
+        for (int i = 0; i < nums.length; i++) {
+            sum += nums[i];
+
+            // Check if (sum - k) has been seen before
             if (prefixSumCount.containsKey(sum - k)) {
                 count += prefixSumCount.get(sum - k);
             }
 
-            // Update the count of the current prefix sum
-            prefixSumCount.put(sum, prefixSumCount.getOrDefault(sum, 0) + 1);
+            // Update prefix sum frequency in the map
+            if (prefixSumCount.containsKey(sum)) {
+                int currentFreq = prefixSumCount.get(sum);
+                prefixSumCount.put(sum, currentFreq + 1);
+            } else {
+                prefixSumCount.put(sum, 1);
+            }
         }
 
         return count;
